@@ -1,0 +1,36 @@
+{
+  "name": "lcc_gov_alpha",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lccgov/lcc_gov_alpha.git"
+  },
+  "author": "Leeds City Council eServices",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lccgov/lcc_gov_alpha/issues"
+  },
+  "homepage": "https://github.com/lccgov/lcc_gov_alpha#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+     "lcc_frontend_toolkit": "^0.4.0",
+     "gulp-connect": "^5.0.0",
+	   "gulp-if": "^2.0.1",
+	   "gulp-jasmine": "^2.4.0",
+	   "gulp-jshint": "^2.0.1",
+	   "gulp-notify": "^2.2.0",
+	   "gulp-plumber": "^1.1.0",
+	   "gulp-rename": "^1.2.2",
+	   "gulp-sass": "^2.3.2",
+	   "gulp-sass-inheritance": "^0.5.1",
+	   "gulp-sourcemaps": "^1.6.0",
+	   "gulp-uglify": "^2.0.0",
+	   "gulp-util": "^3.0.7",
+	   "jshint": "^2.9.2"
+  }
+}
