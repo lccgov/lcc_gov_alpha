@@ -56,16 +56,7 @@
     //search toggle
     $('#site-search-reveal').click(function () {
         $('#site-search-wrapper').slideToggle("slow");
-        $('#site-search-input').focus();
         $this.toggleClass('active');
-    });
-
-    //menu toggle
-    $('#menu-btn').click(function () {
-        $('#menu').slideToggle("slow");
-        $('#menu').focus();
-        $this.toggleClass('active');
-        $('#menu').toggleClass('active');
     });
     
     //search toggle

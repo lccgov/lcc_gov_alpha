@@ -13,7 +13,7 @@ var rename = require('gulp-rename');
 var jasmine = require('gulp-jasmine');
 
 var paths = {
-  source: {scripts: './javascript/**/*.js', stylesheets: './stylesheets/**/*.scss', html: './*.html'},
+  source: {scripts: './javascript/**/*.js', stylesheets: './stylesheets/**/*.scss', html: '*.html', css: './css/*.css'},
   target: {scripts: './js', stylesheets: './css'}
 };
 
@@ -41,16 +41,17 @@ gulp.task('minifyjs', ['lint'], function () {
 gulp.task('sass', function () {
     return gulp.src(paths.source.stylesheets)
       .pipe(sourcemaps.init())    
-      .pipe(sass().on('error', function (err) {
+      .pipe(sass({includePaths: '/node_modules/lcc_frontend_toolkit/stylesheets'}).on('error', function (err) {
           notify({ title: 'SASS Task' }).write(err.line + ': ' + err.message);
           this.emit('end');
       }))
       .pipe(sourcemaps.write())
       .pipe(gulp.dest('./css'))
+
 });
 
 gulp.task('watch', function () {
-    gulp.watch(paths.source.html, ['html:watch']);
+    gulp.watch([paths.source.html, paths.source.css], ['statics:watch']);
     gulp.watch(paths.source.stylesheets, ['sass:watch']);
     gulp.watch(paths.source.scripts, ['minifyjs']);
 });
@@ -63,8 +64,8 @@ var inheritanceCondition = function (file) {
     return /\/_/.test(filename) || /^_/.test(filename); // check whether partial (starts with '_');
 };
 
-gulp.task('html:watch', function() {
-    return gulp.src(paths.source.html)
+gulp.task('statics:watch', function() {
+    return gulp.src([paths.source.css, paths.source.html])
         .pipe(connect.reload());
 });
 
@@ -73,7 +74,7 @@ gulp.task('sass:watch', function() {
         .pipe(sourcemaps.init())    
         .pipe(plumber())
         .pipe(gulpif(inheritanceCondition, sassInheritance({dir: 'stylesheets/'})))
-        .pipe(sass().on('error', function (err) {
+        .pipe(sass({includePaths: '/node_modules/lcc_frontend_toolkit/stylesheets'}).on('error', function (err) {
             notify({ title: 'SASS Task' }).write(err.line + ': ' + err.message);
             this.emit('end');
         }))
